@@ -12,9 +12,11 @@ const app = new program(path.resolve(__dirname, '..', 'lib'));
 
 app
   .version(pkg.version)
-  .on('404', NotFoundEvent)
-  .on('error', ErrorEvent)
-  .on('exit', ExitEvent);
+  .on('404', NotFoundEvent(app))
+  .on('error', ErrorEvent(app))
+  .on('exit', ExitEvent(app));
 
-app.command('app :name([a-z0-9_\\-]+)?', 'middleware/open-spinner', 'controller/create-app');
+app.command('new :name([a-z0-9_\\-]+)?', 'middleware/open-spinner', 'controller/create-app');
+app.command('add :name([a-zA-Z0-9_\\-]+)', 'middleware/find-root', 'middleware/open-spinner', 'controller/add-module');
+
 app.listen();
