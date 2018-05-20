@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/reinjs/rein-cli#readme",
   "dependencies": {
-    "@reinjs/rein-command": "^1.0.3",
+    "@reinjs/rein-command": "^1.0.4",
     "@reinjs/rein-utils": "^1.0.1",
     "array-flatten": "^2.1.1",
     "chalk": "^2.4.1",
@@ -29,6 +29,7 @@
     "find-root": "^1.1.0",
     "fs-extra": "^6.0.1",
     "inquirer": "^5.2.0",
+    "is-type-of": "^1.2.0",
     "js-beautify": "^1.7.5",
     "ping": "^0.2.2",
     "ys-spinner": "^1.0.4"
