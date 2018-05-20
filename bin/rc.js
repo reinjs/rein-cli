@@ -8,7 +8,10 @@ const program = require('@reinjs/rein-command');
 const NotFoundEvent = require('../lib/event/404');
 const ErrorEvent = require('../lib/event/error');
 const ExitEvent = require('../lib/event/exit');
+const utils = require('../lib/utils');
 const app = new program(path.resolve(__dirname, '..', 'lib'));
+
+app.utils = utils;
 
 app
   .version(pkg.version)
