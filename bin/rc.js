@@ -18,9 +18,23 @@ app
   .on('exit', ExitEvent(app))
   .utils = require('../lib/utils');
 
-app.command('new :name([a-z0-9_\\-]+)?', 'middleware/open-spinner', 'controller/create-app');
-app.command('add :name([a-zA-Z0-9_\\-\/\.]+)', 'middleware/find-root', 'middleware/find-plugin-addones', 'middleware/open-spinner', 'controller/add-module');
-app.command('plugin :name([a-z0-9_\\-]+)?', 'middleware/open-spinner', 'controller/create-plugin');
+app.command(
+  'new :name([a-z0-9_\\-]+)?',
+  'middleware/open-spinner', 'middleware/update',
+  'controller/create-app'
+);
+
+app.command(
+  'add :name([a-zA-Z0-9_\\-\/\.]+)',
+  'middleware/find-root', 'middleware/find-plugin-addones', 'middleware/open-spinner',
+  'controller/add-module'
+);
+
+app.command(
+  'plugin :name([a-z0-9_\\-]+)?',
+  'middleware/open-spinner', 'middleware/update',
+  'controller/create-plugin'
+);
 
 /**
  * 支持插件自定义命令调用
@@ -28,6 +42,10 @@ app.command('plugin :name([a-z0-9_\\-]+)?', 'middleware/open-spinner', 'controll
  * 根据设定的router规则
  * 匹配到执行的函数
  */
-app.command('*', 'middleware/find-root', 'middleware/find-plugin-addones', 'middleware/open-spinner', 'middleware/resolve-plugin');
+app.command(
+  '*',
+  'middleware/find-root', 'middleware/find-plugin-addones', 'middleware/open-spinner',
+  'middleware/resolve-plugin'
+);
 
 app.listen();
