@@ -8,18 +8,17 @@ const program = require('@reinjs/rein-command');
 const NotFoundEvent = require('../lib/event/404');
 const ErrorEvent = require('../lib/event/error');
 const ExitEvent = require('../lib/event/exit');
-const utils = require('../lib/utils');
 const app = new program(path.resolve(__dirname, '..', 'lib'));
-
-app.utils = utils;
 
 app
   .version(pkg.version)
   .on('404', NotFoundEvent(app))
   .on('error', ErrorEvent(app))
-  .on('exit', ExitEvent(app));
+  .on('exit', ExitEvent(app))
+  .utils = require('../lib/utils');
 
 app.command('new :name([a-z0-9_\\-]+)?', 'middleware/open-spinner', 'controller/create-app');
 app.command('add :name([a-zA-Z0-9_\\-\/\.]+)', 'middleware/find-root', 'middleware/find-plugin-addones', 'middleware/open-spinner', 'controller/add-module');
+app.command('*', 'middleware/find-root', 'middleware/find-plugin-addones', 'middleware/open-spinner', 'middleware/resolve-plugin');
 
 app.listen();
