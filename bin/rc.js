@@ -31,7 +31,7 @@ app.command(
 );
 
 app.command(
-  'plugin :name([a-z0-9_\\-]+)?',
+  'plugin :name([a-z0-9_\\-\/\.@]+)?',
   'middleware/open-spinner', 'middleware/update',
   'controller/create-plugin'
 );
