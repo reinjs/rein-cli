@@ -19,21 +19,27 @@ app
   .utils = require('../lib/utils');
 
 app.command(
-  'new :name([a-z0-9_\\-]+)?',
+  'new :name?',
   'middleware/open-spinner', 'middleware/update',
   'controller/create-app'
 );
 
 app.command(
-  'add :name([a-zA-Z0-9_\\-\/\.]+)',
+  'add :name',
   'middleware/find-root', 'middleware/find-plugin-addones', 'middleware/open-spinner',
   'controller/add-module'
 );
 
 app.command(
-  'plugin :name([a-z0-9_\\-\/\.@]+)?',
+  'plugin :name?',
   'middleware/open-spinner', 'middleware/update',
   'controller/create-plugin'
+);
+
+app.command(
+  'init :name',
+  'middleware/find-root', 'middleware/open-spinner',
+  'controller/module-init'
 );
 
 /**
