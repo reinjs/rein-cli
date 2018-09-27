@@ -1,6 +1,6 @@
 {
   "name": "@reinjs/rein-cli",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "The cluster module of reinjs",
   "main": "index.js",
   "repository": {
